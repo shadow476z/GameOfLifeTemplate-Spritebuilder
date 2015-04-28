@@ -148,7 +148,14 @@ static const int GRID_COLUMNS = 10;
         // iterate through all the columns for a given row
         for (int j = 0; j < [_gridArray[i] count]; j++)
         {
-            
+            Creature *currentCreature = _gridArray[i][j];
+            long neighbors = currentCreature.livingNeighbors;
+            if (neighbors == 3)
+            {
+                currentCreature.isAlive = true;
+            } else if (neighbors <= 1 || neighbors >= 4) {
+                currentCreature.isAlive = false;
+            }
         }
     }
 }
